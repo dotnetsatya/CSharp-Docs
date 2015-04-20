@@ -1,0 +1,2072 @@
+//demo.cs
+//Sample Console Application using C#
+using System;
+namespace Xyz 
+{
+	public class Program 
+	{
+		public static void Main()
+		{
+		Console.WriteLine("Hello... C#");
+		Console.WriteLine("Welcome .NET Programing");
+		}
+	}
+}
+
+Compilation : 
+Open Visual Studio command Prompt
+Go to Application directory 
+csc /target:exe demo.cs
+	Here, we get demo.exe 
+
+Execution : 
+	demo.exe 
+
+
+Creating Console Application in Visual Studio :
+
+Open Visual Studio 2012
+File =>New =>Project => C# => Console Application 
+	Give some Path 
+	Ok 
+
+Write the Source Code
+Then Debug it(CTRL+ F5)
+
+
+
+Summary : 
+	In this program we are importing System namespace.
+	System is the inbuilt namespace from mscorlib.dll Assembly 
+	Console is the predefined class from System namespace.
+	WriteLine() is the predefined method from Console class.
+
+
+
+
+
+Comments : 
+	We use comments to give some summary to the statements in the source code.
+
+we have 2 types comments 
+
+//single line comment 
+
+/* multiline comment */
+
+
+	We use these comments in the source code to give some summary .
+
+	We can't extract these comments summary from Source code.
+	These are part of only Source code.
+
+
+But, we need to provide summary to the statements and we need to extract that summary from the source at runtime.
+
+We need to prepare metadata automatically as per the comments we write in the source code.
+
+For this purpose, we use XML comments
+
+
+Xml comments : 
+	These are used to provide the summary to the C# statements and we can also extract this summary from source at runtime.
+	And This summary can be writted to XML document file at runtime.
+	It uses "/// "
+
+	It uses some XML elements 
+
+e.g.
+	
+///<summary>for providing summary</summary>
+
+///<remarks>for provides remarks</remarks>
+
+///<param name="paramName"> for parameter info</param>
+
+
+Example: 
+//Application with XML comments 
+//demo1.cs
+using System;
+
+namespace Xyz 
+{
+	///<summary>This is main class for Our application</summary>
+	public class Program 
+	{
+		///<summary>It is an Entry</summary>
+		public static void Main()
+		{
+			Console.WriteLine("XML Comments");
+		}
+	}
+}
+
+Compilation : 
+
+csc /target:exe /doc:mydoc.xml demo1.cs
+
+
+
+e.g.
+//Sample C# Application 
+//DemoApp.cs
+
+using System;
+
+namespace DemoApp
+{
+	///<summary>Custom Class</summary>
+	public class Employee
+	{
+		///<param name="name">give for employee</param>
+		public void SetName(string name)
+		{
+			Console.WriteLine("Hello.."+name);
+		}
+	}
+
+	///<summary>Entry Class for the Application</summary>
+	public class Program
+	{
+		///<summary>Entry Method</summary>
+		public static void Main()
+		{
+			Employee obj=new Employee();
+			obj.SetName("Satya");
+
+			Console.WriteLine("Hello..C#");
+			Console.WriteLine("Welcome .NET Framework");
+		Console.ReadLine();
+		}
+	}
+}
+
+compilation:
+
+csc /doc:metadata.xml DemoApp.cs
+=======================================================-=====
+
+Working with Namespaces:
+
+
+What is namespace ? 
+	It is a logical grouping of types.
+	We can group all the types(classes, interfaces, delegates, structures, enum) into a single component.
+	So that,we can re-use the components by using namespace.
+
+
+Why namespace is required ? 
+	It is for grouping types.
+	It is for Re-using Types
+	It is for avoiding name collision of types.
+
+e.g.
+	demo1.cs
+		public class Class1
+		{
+			//methods
+		}
+		public class Class2
+		{
+		}
+
+	demo2.cs
+		public class Class1
+		{
+			//Some other methods
+		}
+
+	If these two files belongs to same Project, then again it's invalid.
+
+	Here, we have 2 classes wiith the same name.
+	It's invalid.
+	The class name must be unique.
+	But, some times you may required to take multiple classes with the same name.
+
+	This can be done by using namespaces.
+
+e.g.
+demo.cs
+		namespace Xyz
+		{
+		
+		public class Class1
+		{
+			//methods
+		}
+		public class Class2
+		{
+		}
+		}
+
+		namespace Abc
+		{
+		public class Class1
+		{
+			//Some other methods
+		}
+		}
+
+	Xyz.Class1
+	Xyz.Class2
+	Abc.Class1
+
+Note: 
+	The namespace name must be unique.
+
+
+Syntax : -
+namespace NamespaceName
+{
+	//all the types
+	//classes
+	//interfaces
+	//delegates
+	//struct
+	//enum
+}
+
+
+e.g.
+namespace Enterprise.Business.Facade
+{
+	public class Customer
+	{
+		public void AddCustomer()
+		{
+		}
+	}
+	public class Employee
+	{
+	}
+}
+
+Note : 
+	The namespace name might be any thing relevent to application.
+	
+e.g.
+Application name is TimeSheet.
+e.g.
+	TimeSheet.Core
+	TimeSheet.Core.Encryption
+	TimeSheet.Data
+	TimeSheet.Data.Entities
+
+Naming conventions in C# 
+-------------------------
+In C#, name should start with Upper case.
+for Namespace name ,ClassName, MethodName, PropertyName, 
+We use Pascal case for this.
+
+If it contains more than one word, The first letter of each 
+word must be Uppper case.
+
+
+e.g.
+	Enterprise.Business.Facade
+	Customer
+	Employee
+	AddCustomer() 
+	GetCustomer ()
+	
+	public class Employee
+	{
+		public int EmployeeId{get;set;}
+		
+		public void GetEmployee()
+		{
+		}
+	}
+	
+for private fields, arguments, local variables, we use Camel Case.
+	e.g.
+	myint
+	myFirstName
+	myLastName
+
+e.g.
+	public class Employee
+	{
+		private int employeeId;
+		private string employeeName;
+		
+	public void SetEmployee(int employeeId,string employeeName)
+		{
+		}
+	}	
+
+
+How to re-use the namespace?
+	We can re-use the namespaces in another applications by importing the namespaces.
+	we use "using" keyword to import the namespaces in C#
+
+Syntax : -
+
+using NamespaceName;
+
+e.g.
+	using System;
+	uisng System.Data;
+	using System.IO;
+	using System.Collections;
+	...
+	...
+
+
+mscorlib.dll
+System.Data.dll
+System.Web.dll
+..
+..
+These all are built-in assemblies(.dll)
+
+
+Creating user Defined Library (.dll)
+===================================
+We can create user defined Assembly(library) by using Command as wel as Visual Studio 
+
+
+Creating LIbrary by using Command Prompt 
+
+Open Notepad 
+Write the source 
+save it as .cs file extension
+Then Open the Visual Studio command prompt
+Goto the application directory 
+Then compile it by specifying the target as libary 
+
+Syntax  : - 
+
+csc /target:library filename.cs
+
+Example :
+//Sample library Project 
+//SampleLibrary.cs
+namespace Xyz 
+{
+	public class Class1
+	{
+		public string SayHello(string name)
+		{
+			return "Hello..."+name;
+		}
+	}
+}
+
+
+compilation : 
+
+csc /target:library sampleLibrary.cs
+	Here, will get : samplelibrary.dll 
+
+
+How to re-use it? 
+
+Consuming .dll file:
+
+Steps :by using Command Prompt
+
+	Create another Application 
+	Import the namespace 
+	Access the Members of the namespace 
+	Save it as .cs file extension
+	Then compile by adding the reference of your .dll file
+
+
+Syntax : -
+
+csc /target:exe -r:libraryname.dll filename.cs
+
+
+
+ 
+
+Let me use the SampleLibrary.dll in another application 
+
+SampleLibrary.dll (User defined Assembly)
+	Xyz
+		Class1
+			SayHello()
+
+mscorlib.dll (Builtin Assembly)
+	System
+		Console
+			WriteLine()
+
+let us use these two assemblis and write the program 
+
+Example:
+
+//Consuming Assemblies
+//democlient.cs
+using System;
+using Xyz;
+
+namespace Abc
+{
+	public class Program 
+	{
+		public static void Main()
+		{
+			Class1 obj=new Class1();
+		string message=obj.SayHello("Satya");
+		Console.WriteLine(message);
+		}
+	}
+}
+
+compilation: 
+
+csc /target:exe -r:SampleLibrary.dll DemoClient.cs
+	Here,we get : DemoClient.exe 
+
+Execute it: 
+	DemoClient.Exe 
+
+========================================================
+Let me show the same in Visual Studio : 
+Creating library files
+
+Open Visual Studio 
+File =>new =>Project =>C# => Class Library Project 
+	Give some Path
+	Ok 
+
+Then write the Source Code 
+Then Build it
+now, you find  the dll file in Bin folder
+
+
+	
+
+Let us see, how to consume(add reference) assemblies(.dll) in Visual Studio 
+===========================================================
+Steps :
+	Create another Applications(Console)
+	Open Solution Explorer 
+	Right click on References => Add Reference 
+	Choose your .dll file(Browse)
+	Then add it.
+
+	Then import the namespace in the source code.
+	Then access the members of that namespace.
+
+
+
+This is all about creating a library and Consuming that library 
+
+Note :
+	This is called Private Assembly.
+	In case of Private assembly,we write the source code and build it.
+	Then you can use it directly.
+	It does not required to deploy into the GAC.
+
+	
+What is class?
+	It is the main part of OOPS
+	It is for writing the Business logic.
+	It is required to write any method.
+
+Syntax : -
+
+AccessSpecifier [modifier] class ClassName 
+{
+	//members
+	//fields
+	//methods
+	//properties
+	//events
+}
+
+
+Access Specifiers for class:	
+	public 	
+	internal 
+	
+if you make the class as public, we can reuse the public class in any application.
+
+if you make the class "internal
+Note:
+	The default is internal for class.
+
+Access Modifiers for Class : 
+	static 
+	abstract
+	sealed
+	partial 
+
+
+public class : 
+	It is accessible any where( global scope)
+
+internal class :
+	It is accessible only in the current source file
+
+
+
+
+static class : 
+	A static class includes only static members.
+	it does not allow non-static members
+	It can't be instantiated.
+	It can't be inherited(can't extend).
+	Can access the members directly using ClassName.
+
+
+e.g.
+	public static class Class1
+	{
+		static int x;
+		public static void SetX(int data)
+		{
+			x=data;
+		}
+		public static int GetX()
+		{
+			return x;
+		}
+	}
+
+
+	Class1 obj=new Class1(); //Error 
+		Can't be instantiated.
+
+
+	public class Class2 : Class1 //Error
+	{
+	}
+	Can't be inherited.
+
+Note: 
+	We use static class to create Utility class.
+	To create common functionality and to access that without any instance,we use static class.
+
+Example:
+
+using System;
+
+namespace Xyz
+{
+    public class Class1
+    {
+        public string SayHello(string msg)
+        {
+            return "Hello.." + msg;
+        }
+    }
+}
+namespace Abc
+{
+    public static class Class1
+    {
+        static int x;
+        public static void SetX(int data)
+        {
+            x = data;
+        }
+        public static int GetX()
+        {
+            return x;
+        }
+    }
+}
+
+namespace ConsoleDemo
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            Xyz.Class1 obj = new Xyz.Class1();
+            string message = obj.SayHello("Marlabs");
+            Console.WriteLine(message);
+
+            Abc.Class1.SetX(1000);
+            Console.WriteLine(Abc.Class1.GetX());
+        }
+    }
+}
+
+
+Note :
+	In case of static class,we can access the members without instance.
+	We can  access the members by using ClassName.
+
+
+static variable:
+	We can make the variable as static by using static keyword.
+
+syntax: 
+	static type variableName;
+
+e.g.
+	static int x;
+	static double commision;
+
+what is the scope of static variable? 
+We can include a static field in the static class as well as non-static class.
+
+if you include a static field in a non-static class, it preserves the state across multiple instances(objects).
+
+if you include "non-static" field in a class, it does not preserve it's state across the instances.
+"non-static" is applicable for only a specific instance.
+
+
+e.g.
+	non-static 
+
+	public class Class1
+	{
+		int count; // initializes with zero 
+		public void Increment()
+		{
+			count++;
+		}
+	}
+
+Class1 obj1=new Class1(); //count is initialized with zero
+	obj1.Increment(); //count : 1
+	obj1.Increment(); //count : 2 
+	obj1.Increment(); //count : 3 
+	..
+	..
+The scope of count is only for obj1 
+
+
+Class1 obj2=new Class1();//again count is initialized with zero
+
+	obj2.Increment(); //count :1
+	obj2.Increment();// count : 2
+	obj2.Increment();//count : 3
+
+	..
+	..
+Here, again the scope of count is for only Obj2 
+
+
+Note :
+	here, count is different for  each object.
+
+	for every instance, non-static member will be loaded into the memory.
+
+	It is initialized again and again.
+
+
+But, to initialize only once, we use : static members
+
+e.g.
+
+	static members
+
+	public class Class1
+	{
+		static int count; // initializes with zero 
+		public void Increment()
+		{
+			count++;
+		}
+	}
+
+Class1 obj1=new Class1(); //count is initialized with zero 
+	obj1.Increment(); //count : 1
+	obj1.Increment(): //count : 2
+	...
+	..
+
+Class1 obj2=new Class1(); //here, count is already initialized 
+	//alread count has some value : (2)
+
+	obj2.Increment(); //count : 3
+	obj2.Increment();//count : 4
+
+
+Now: 
+	obj1 : count : 4
+	obj2: count : 4 
+
+
+
+That means, the static member will preserve it's state among the objects.
+
+
+Syntax : Instantiation (Non-static class)
+
+	Classname objName=new ClassName();
+		//It is a named object.
+
+
+		new ClassName();
+			//anonymous Object
+
+
+What are methods? 
+	To write business logic, we need a function.
+	We can't define the statements directly in a class.
+	You must use methods to define some logic in the class.
+
+
+
+Access Specifiers :
+	private
+	public 
+	protected
+	internal 
+	protected internal
+
+Modifiers for Method 
+	static 
+	virtual 
+	abstract
+	sealed
+	partial 
+	override/new
+
+
+Note : A static method can be accessed directly through className.
+
+public method can be accessed any where. 
+private method can be accessed only within the class.
+
+
+What is Main() ?  
+
+	To create executable file(Standalone Application),we need a single entry(Main())
+
+
+
+Command line arguments?
+	These are used to pass some arguments to the Main() method.
+
+	During Execution of the program ,we can pass some arguments to the Main() in the command line.
+
+Syntax : -
+
+	public static void Main(string []args)
+	{
+		//args[0]...
+	}
+
+
+Example :
+//Command line arguments Demo 
+//cmdDemo.cs
+using System;
+namespace Xyz 
+{
+	public class Program 
+	{
+		public static void Main(string []args)
+		{
+		string name=args[0];
+		Console.WriteLine("welcome ..."+name);
+		}
+	}
+}
+
+compilation: 
+
+csc /target:exe cmddemo.cs
+
+Execution :
+	cmddemo.exe  satya 
+		(output: Welcome ...Satya)
+
+	cmddemo.exe marlabs
+		(output : welcome ...Marlabs)
+
+
+
+Example : Print all the command line arguments 
+//Command line arguments Demo 
+//cmdDemo1.cs
+using System;
+namespace Xyz 
+{
+	public class Program 
+	{
+		public static void Main(string []args)
+		{
+	Console.WriteLine("The given Input is : ");
+		
+	foreach(string arg in args)
+		{
+		Console.WriteLine(arg);
+		}
+	
+		}
+	}
+}
+
+compilation : 
+
+	csc cmddemo1.cs
+
+Execution :
+	cmddemo.exe  Marlabs C# Satya
+
+
+Example for Console class : 
+
+using System;
+namespace Xyz
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            Console.WriteLine("Welcome Marlabs");
+        }
+    }
+}
+
+
+
+
+WriteLine() for printing multiple variables: 
+
+
+Note: 
+	we use + for addition on numerics
+	We use + for concatenation on strings
+
+Syntax : To add some dynamic data to the constant string
+
+Console.WriteLine("{0} {1} {2} ...", variable1,variable2,...);
+
+
+
+
+e.g.
+
+Console.WriteLine("Value1 : 10 Value2 :20");
+		here, value1 :10 is constant 
+		value 2: 20 is also constant.
+
+	Instead, we need to get value from variables.
+
+	int a=100,b=200,c=a+b;
+	Console.WriteLine("Value1: {0} Value2:{1} Result:{2}",a,b,c);
+
+
+
+
+Example:
+using System;
+namespace Xyz
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int a = 10, b = 20, c = a + b;
+            Console.WriteLine(a + b + c);
+            Console.WriteLine(a + " " + b + " " + c);
+            Console.WriteLine("Value1: {0} Value2:{1} Result:{2}", a, b, c);
+
+        }
+    }
+}
+
+ReadLine();
+	It is used to read the data from Console.
+	You give any input in the console, it will read as a string.
+	It will read line by line.
+
+Syntax : - 
+	string variable=Console.ReadLine();
+
+using System;
+namespace Xyz
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            string name = null;
+            Console.WriteLine("Enter name");
+            name = Console.ReadLine();
+            Console.WriteLine("Welcome "+name);
+        }
+    }
+}
+
+Note:
+	You give any input , it will consider as a string only.
+	If you want assign to other type variables, you must explicitly convert it.
+
+
+	C# does not support implicit type conversion.
+
+Example:
+
+using System;
+namespace Xyz
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int a, b, c;
+            Console.WriteLine("Enter for a and b");
+            a = int.Parse(Console.ReadLine());
+            b =int.Parse( Console.ReadLine());
+            c = a + b;
+            Console.WriteLine("the result is:" + c);
+
+        }
+    }
+}
+
+
+Read():
+
+using System;
+namespace Xyz
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int ch;
+            Console.WriteLine("Enter a char");
+            ch = Console.Read();
+            Console.WriteLine("the given char:{0} and It's ASCII value is:{1}", Convert.ToChar(ch), ch);
+
+
+
+        }
+    }
+}
+
+Example : check for given char is Alphabet or Digit or Symbol
+using System;
+namespace Xyz
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            int ch;
+            Console.WriteLine("Enter a char");
+            ch = Console.Read();
+            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
+            {
+                Console.WriteLine("The given char is: Alphabet");
+            }
+            else if (ch >= '0' && ch <= '9')
+            {
+                Console.WriteLine("The given char is: Digit");
+            }
+            else
+            {
+                Console.WriteLine("The given char is:Symbol");
+            }
+        }
+    }
+}
+
+There are two file extensions for Assembly : 
+
+.exe
+	It is the executable .
+	It can't be re-used.
+	It requires the Main() method. As it is entry point.
+
+
+.dll
+	it is the library file.
+	It is re-usable.
+	We can include multiple namespaces.
+	It is not executable.
+
+
+How to create library file: 
+	You need to compile the Application by specifying the target as library.
+	It does not  required entry point( Main())
+
+
+Syntax : 
+	csc /target:library  filename.cs
+
+Example:
+
+//SampleLibrary.cs 
+
+namespace Xyz 
+{
+	public class  Class1
+	{
+		public string SayHello(string name)
+		{
+			return "Hello..."+name;
+		}
+	}
+}
+
+How to compile it ? 
+
+Open The Visual Studio Command Prompt
+
+Goto Application Directory 
+
+Then compile by using Target as Library 
+
+csc /target:library filename.cs
+csc /target:library SampleLibrary.cs
+
+Then we get .dll file.
+
+
+
+
+How to Re-use this library file:
+
+
+Take another Application.
+Import the namespace and use the Methods
+Then while compiling this application , you need to add the reference of Your Library(Assembly)
+
+
+Example:
+//democlient.cs
+//Application for Consuming Assembly 
+using System;
+using Xyz;
+namespace ConsoleDemo
+{
+	public class Program 
+	{
+		public static void Main()
+		{
+			Class1 obj=new Class1();
+			string message=obj.SayHello("satya");
+			Console.WriteLine(message);
+		}
+	}	
+}
+
+
+how to compile it? 
+You need to add the reference of Your Library (assembly)
+
+csc /target:exe -r:SampleLibrary.dll democlient.cs
+
+
+Then ,we get : democlient.exe
+
+
+
+here, System is the namespace form mscorlib.dll
+Xyz is the namespace from SampleLibrary.dll
+
+To use BCL namespaces, we need not to add the reference in Command Prompt.
+
+Creating Library files by using Visual Studio :
+
+Steps:
+	open Visual Studio 
+	File =>New =>Project=>C# =>  Class Library Project 
+
+	Give the Path and click Ok 
+
+Write the Source Code , then Build it.
+
+It will generate the DLL file.
+You can find the .dll file in Bin folder.
+
+
+Consuming the Library file in Visual Studio : 
+
+Steps : 
+	Take an  Application(Console or Windows /Web or any)
+
+	Then add the Reference of your Library 
+	Then Import the namespace 
+	use the classes 
+	Then Debug it.
+
+Let's take an Example : 
+
+Create a Console Application 
+Then add the Reference of your .dll file
+
+How to Add the Reference in Visual Studio ? 
+
+Open Solution Explorer 
+Right Click => Add Reference => Choose your .dll file and Add 
+
+
+then Write the Source code and Debug it(CTRL+ F5)
+
+
+Note : 
+	This is called Private Assembly.
+	Becuase, we didn't deploy the Assembly in to the GAC.
+	we are directly using The .dll file by adding the Reference.
+
+
+
+
+
+What is Class ? 
+	It is used to create user defined Type.
+	It allows us to encapsulate all the data into a single unit(Class).
+	It contains : Methods, Properties, Events and Fields.
+
+
+Syntax : -
+	
+AccessSpecifier [Modifier] class ClassName 
+{
+	//Members
+}
+
+e.g.
+
+public class Class1
+{
+	int _x;
+	public void SetX(int x)
+	{
+		_x=x;
+	}
+	public int GetX()
+	{
+		return _x;
+	}
+}
+
+
+Access Specifiers : 
+	public 
+	private
+	protected
+	internal 
+	internal protected
+
+Modifiers for Class 
+	static 
+	abstract
+	sealed
+	partial 
+
+
+public: 
+	It allows us to access that Class any where(Global)
+
+private : 
+	It can be accessed only in the Current Source File.
+
+
+
+static class : 
+	If you make the class as static, we can include only static members.
+	The static class can't be inerited.
+	The static class can't be instantiated.
+
+e.g.
+	public static class Class1
+	{
+		static int x;
+		public static void SetX(int data)
+		{
+			x=data;
+		}
+	}
+
+
+	In this case , this class can't be instantiated.
+	e.g.
+		Class1 obj=new Class1(); //Error
+
+	In this case, The class can't be inherited.
+
+		public class Class2 : Class1 //Error 
+		{
+		}
+
+
+Note: 
+	We can access the Members of the static class By using ClassName.
+
+	e.g.
+	Class1.SetX(1000);
+
+
+Example : 
+
+namespace Abc
+{
+    public static class Class1
+    {
+        static int x;
+        public static void SetX(int data)
+        {
+            x = data;
+        }
+        public static int GetX()
+        {
+            return x;
+        }
+    }
+}
+
+using System;
+using Xyz;
+using Abc;
+
+namespace ConsoleDemo
+{
+    public class DemoClass
+    {
+        public static void Main()
+        {
+            Xyz.Class1 obj = new Xyz.Class1();           
+
+            string message=obj.SayHello("Marlabs");
+            Console.WriteLine(message);
+
+            Abc.Class1.SetX(1000);
+            Console.WriteLine(Abc.Class1.GetX());
+
+        }
+    }
+}
+
+
+non-static class : 
+	It is the default for every class.
+	It can include static as well as non-static members.
+	It can be Instantiated.
+	It can be Inherited.
+
+Syntax : -
+	public class ClassName
+	{
+		//static members
+		//non-static members
+	}
+
+
+e.g.
+	public class Class1
+	{
+		public void Greet()
+		{
+			Console.WriteLine("Welcome Marlabs");
+		}
+		public static void Hello()
+		{
+			Console.WriteLine("Hello...");
+		}
+	}
+
+To access Greet() method, we need instance as it is non-static member.
+e.g.
+	Class1 obj=new Class1();
+		obj.Greet();
+
+To access Hello() method, we don't need instance. We can access directly through ClassName.
+e.g.
+	Class1.Hello();
+
+
+static member : 
+==============
+public class Class1
+{
+	int count; //non-static and initialized with zero
+
+	public void Increment()
+	{
+		count++;
+	}
+	public void Print()
+	{
+		Console.WriteLine(count);
+	}
+}
+
+Class1 obj1=new Class1();
+	//count is initialized with Zero 
+	obj1.Increment(); //count becomes 1
+	obj1.Increment(); //count becomes 2
+	obj1.Increement(); //count becomes 3
+
+
+Class1 obj2=new Class1();
+	//again count is initialized with zero 
+	obj2.Increment();//count : 1
+	obj2.Increment();//count : 2
+	obj2.Increment();//count : 3
+
+..
+..
+..
+Note: 
+	In case of non-static variable, for every instance it is loaded into memory again and again.
+	Here, non-static variable will not share it's state between objects.
+	For every instance, the value will be different.
+
+
+
+	Instead, we need to share the state of variable among the objects(instances)
+
+	For this purpose,we use static variable.
+
+
+e.g.
+public class Class1
+{
+	static int count; //static and initialized with zero
+
+	public void Increment()
+	{
+		count++;
+	}
+	public void Print()
+	{
+		Console.WriteLine(count);
+	}
+}
+
+Class1 obj1=new Class1(); //count becomes zero
+	obj1.Increment(); //count becomes 1 
+	obj1.Increment(); //count becomes 2 
+
+Class1 obj2=new Class1(); //here also , count is : 2
+
+	obj2.Increment(); //count becomes : 3
+	obj2.Increment(); //count comes : 4 
+
+
+Now :
+	 obj1 : c#ount =4
+	 obj2 : count =4
+
+    
+
+
+Syntax : Method 
+
+AccessSpecifieer [Modifier] returnType MethodName(arglist)
+{
+	//logic
+}
+
+
+Access Specifiers :
+	public 
+	private
+	protected
+	internal 
+	internal protected 
+
+Modifiers for Method : 
+	static 
+	virtual 
+	sealed
+	partial
+	abstract
+	override/new
+
+
+In case of static method,we can access through classname directly.
+
+
+What is Main() method? 
+	It is an entry point the Program.
+	To create executable file, we need single Main() method.
+
+Syntax : -
+	public static void Main(arglist)
+	{
+		//logic 
+	}
+
+Note: 
+	Main() must be static 
+
+	arglist in the Main() method are called command line arguments.
+
+	These are used in Console Applications.
+	During execution of the Console Application, we can pass some arguments to the Main() method.
+
+Syntax : -
+	public static void Main(string []args)
+	{
+			//logic 
+	}	
+
+	args[0]
+	args[1]
+	..
+	..
+Example : 
+
+//Application by using Command line arguments
+//CmdDemo.cs
+using System;
+namespace Xyz
+{
+	public class Program 
+	{
+		public static void Main(string []args)
+		{
+		string name=args[0];
+		Console.WriteLine("Hello.."+name);
+		}
+	}
+}
+
+Compilation : 
+
+csc /target:exe CmdDemo.cs
+
+Execution : 
+
+CmdDemo.exe satya
+Output : Hello... Satya 
+
+CmdDemo.exe Marlabs
+Output : 
+	Hello...Marlabs
+
+
+Example : Print all the Command line arguments
+
+//Program to print all the command line arguments
+//CmdDemo1.cs
+using System;
+namespace Xyz 
+{
+	public class Program
+	{
+		public static void Main(string []args)
+		{
+		Console.WriteLine("The give Input");
+
+		foreach(string arg in args)
+		{
+			Console.WriteLine(arg);
+		}
+		}
+	}
+}
+
+compilation: 
+
+csc cmddemo1.cs
+
+Execution : 
+
+cmddemo1.exe Marlabs Satya C# 
+
+
+
+
+BCL in  .NET: 
+mscorlib.dll
+Sysem.Core.dll
+System.Data.dll
+System.Xml.dll
+...
+...
+
+As per the requirement, you need to add the required assembly to your project.
+
+
+Mscorlib.dll 
+	System namespace 
+
+System.dll 
+	System namespace 
+
+
+Console.WriteLine("value1 : {0} value2 : {1} Result:{2}",a,b,c);
+	It uses String Format
+
+	here, it prints the conent enclosed in double quatations.
+
+	To add some dynamic values to the constant string, we use string Format option.
+
+
+e.g.
+	"value1: {0} value2 : {1} ... {n}",variable1,variable2,.. variablen
+
+e.g.
+Console.WriteLine("Value1: 10 Value2 : 20");
+	It prints the output as it is.
+	Here, we took constact data.
+	Instead, you may required add some dynamic data to that constant we  use this option.
+
+
+int a=100,b=200;
+Console.WriteLine("Value1: {0} Value2 : {1}",a,b);
+
+
+ReadLine()
+using System;
+namespace ConsoleDemo
+{
+    public class DemoClass
+    {
+        public static void Main()
+        {
+            string name = null;
+            Console.WriteLine("Enter Name");
+            name = Console.ReadLine();
+            Console.WriteLine("Hello..." + name);
+         }
+    }
+}
+
+
+Note: 
+	It always returns input as string
+	You give any input, it will take it as string only.
+	To assign to some other type variable, you must parse it. 
+
+Example : 
+
+using System;
+namespace ConsoleDemo
+{
+    public class DemoClass
+    {
+        public static void Main()
+        {
+            int a, b, c;
+            Console.WriteLine("Enter a and b");
+            a = int.Parse(Console.ReadLine());
+            b = int.Parse(Console.ReadLine());
+            c = a + b;
+            Console.WriteLine("The result is:{0}", c);
+
+         }
+    }
+}
+
+ReadLine()
+	It reads the Line of string.
+
+
+
+Read()
+	It reads a single character from Console.
+	It returns the ASCII value of given char.
+	It's return type is: int 
+
+Example:
+
+using System;
+namespace ConsoleDemo
+{
+    public class DemoClass
+    {
+        public static void Main()
+        {
+            int ch;
+            Console.WriteLine("Enter a char");
+            ch = Console.Read();
+            Console.WriteLine("The given char is:{0} and it's ASCII vlaue is:{1}", Convert.ToChar(ch), ch);         
+                
+
+         }
+    }
+}
+
+Convert
+	It is the static class of System namespace.
+	It provides some static methods for Type conversion.
+
+e.g.
+	Convert
+		ToChar()
+		ToString()
+		ToInt16()
+		ToInt32()
+		...
+
+		
+ToChar() converts from ASCII value to it's char.
+
+Example:
+	check the given char is Alphabet or Digit or Special Char 
+
+
+
+
+using System;
+namespace ConsoleDemo
+{
+    public class DemoClass
+    {
+        public static void Main()
+        {
+            int ch;
+            Console.WriteLine("Enter a char");
+            ch = Console.Read();
+
+            if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
+            {
+                Console.WriteLine("The given char is : Alphabet");
+            }
+            else if (ch >= '0' && ch <= '9')
+            {
+                Console.WriteLine("The given char is: Digit");
+            }
+            else
+            {
+                Console.WriteLine("It's a symbol");
+            }
+         }
+    }
+}
+
+
+
+Value Type Variables:
+	Here for each variable ,there will be unique address.
+	We can't assign multiple variables to the same address.
+	These are stored in the Stack Memory.
+
+
+
+
+
+
+Signed  : it allows negative and Positive values.
+ 
+UnSigned  : It allows only Non-negative values.(0,1....)
+
+
+
+
+
+
+Reference Type : 
+	These are stored in the heap memory.
+	Here, we can assign the same address for Multiple objects.
+
+
+Note: 
+	System.Object 
+		it is the reference type
+		It is the default base class for all the classes in .NET Framework
+
+	All other types are derived from System.Object type.
+	It stands at top in the type hierarchy.
+
+System.Object 
+	String 
+	DateTime
+	Int16
+	...
+	..
+
+	
+Note:
+	You can assign any data to the object type.
+
+e.g.
+	object o=10;
+	object o1=34.34;
+	object name="marlabs";
+
+	
+
+To create user defined Value Type, we use struct/enum
+
+To create user defined REference type, we use class/interface/delegate
+
+
+
+
+-: 
+	it can be used as binary as well as unary
+
+	a-b 
+		here, it is binary 
+	-a
+		here, it is unary 
+
+
+&&, || : are binary 
+! : It is unary 
+
+
+
+++  and --
+
+
+++ : It increases with 1 
+
+-- : It decreases with 1 
+
+e.g.
+	a=5
+	a++; 
+		it bocomes 6
+
+	a=5
+	a--;	
+		it becomes 4
+
+
+++ and -- : can be either pre Or Post
+
+	Pre-Increment 
+	Post-Increment
+
+	Pre-Decrement
+	Post-Decrement 
+
+What is the difference b/w pre & Post
+	In both the case, the value will be incremented or Decremented.
+
+	But, in case of Assignment ,there will be a difference.
+
+
+e.g.
+	a=5;
+	++a;
+		It becomes 6
+
+	a=5
+	a++;
+		it becomes 6
+
+
+
+	a=5
+	--a; 
+		it becomes 4
+
+	a=5
+	a--;
+		It bocomes 4
+
+
+Let us see other example with assignment:
+
+In case of Pre: First Increment/Decrement is done, then assignement is performed.
+
+
+
+	a=5;
+	b=++a;
+		a : 6
+		b: 6
+
+		
+
+	x=5;
+	y=--x;
+		x: 4
+		y: 4 
+
+
+In case of Post : First you assign it, then you perform Increment/decrement
+
+e.g.
+	a=5
+	b=a++;
+		b : 5
+		a : 6
+
+	x=5;
+	y=x--;
+		y : 5
+		x : 4
+
+
+
+
+checked /unchecked 
+
+	These are used to create a context(block of statements).
+
+
+	In case checked context,If overflow occurs in the context, it raises Exception.
+
+	In case of unchecked context, the overflow is ignored and some unpredicted value will be assigned.
+
+
+byte a;
+	It is unsigned byte. 
+	it allows max : 255 (0... 255)
+	if we assign a value ,which is more than 255, then it is arithmetic overflow.
+
+	Some cases, we need to check for overflow.
+	we use check context to raise exception for overflow.
+
+	To ignore the overflow, unchecked context.
+
+
+	The default is checked in C# 
+
+
+Example : 
+using System;
+namespace ConsoleDemo
+{
+    public class DemoClass
+    {
+        public static void Main()
+        {
+            try
+            {
+                byte b1 = 255;
+                checked
+                {
+                    b1++;
+                }
+                Console.WriteLine(b1);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+         }
+    }
+}
+
+for unchecked
+
+using System;
+namespace ConsoleDemo
+{
+    public class DemoClass
+    {
+        public static void Main()
+        {
+            
+                byte b1 = 255;
+                unchecked
+                {
+                    b1++;
+                }
+                Console.WriteLine(b1);
+           
+         }
+    }
+}
+
+
+
+To raise Exceptions for overflow,we use checked 
+
+To handle this Exception ,we use try..catch()
+
+
+
+
+using System;
+namespace ConsoleDemo
+{
+    public class DemoClass
+    {
+        public static void Main()
+        {           
+            Console.WriteLine(sizeof(int));
+            Console.WriteLine(typeof(int));
+           
+         }
+    }
+}
+
+Type:
+	it specifies what data 
+	It specifies the space required
+	It specifies where data is stored
+	It specified the max value and min value.
+
+
+Value type : 
+	It is stored in the stack memory.
+	Here, for each variable there will be unique address.
+	We can't assign the same address to multiple variables.
+
+
+	int 
+	char 
+	float
+	boolean
+
+
+All the value types are derived from System.ValueType
+All the value types must either struct or enum type
+
+
+Reference : 
+	It is stored heap memory 
+	In the heap memory,we can assign the same address for multiple variables.
+
+	Here, there is no space till runtime.
+	Here, only at runtime the memory is allocated.
+
+Object 
+string 
+Array 
+DateTime
+..
+..
+
+Reference type must be : class /interface/delegate
+
+new 
+
+
+System.Object is the base type
+
+
+
+
+Arithmetic Operation: 
+
+int a=100;
+string s="200";
+int result=a+Convert.ToInt32(s);
+
+
+C# does not support implicit type conversion.
+
+
+If the input is not -valid type, we get FormatException while conversion.
+
+
+Convert.ToString()
+
+object.ToString()
+
+Convert.ToString() : It will handle null values.
+	If the input is null, it covnerts from null to null.
+	It does not throw any Exception.
+
+
+object.ToString()
+	It does not handle null values.
+	If the input is null, It throws NullReferenceException
+
+
+
+Note:
+ToString() will return "given value" for value type.
+ToString() will return "NameSpaceName.ClassName" for reference type.
+
+
+e.g.
+
+ object a = null;
+            string result = a.ToString(); //throws exception 
+            string result1 = Convert.ToString(a); //ingnores exception.
+            Console.WriteLine(result);
+            Console.WriteLine(result1);
+
+            Console.ReadLine();
+
+
+Convert
+	This is the builtin static classs.
+	It includes some methods for type conversion.
+
+	We can use this class for covnersion of one base type to any other base type.
+
+	Instead, we need only the conversion from string to Numeric type.
+	For this purpose, Parse() method.
+	For Parse() method, The input must be always string type.
+
+
+
+Note:
+Parse() method works only string to  numeric type.
+Convert works one base type or any other base type(CLR TYPE).
+
+
+Syntax : -
+	type.Parse(input);
+
+
+
+While Type conversion, Input might be Value type or Reference type.
+
+
+If you convert from Value Type to Reference Type, it is called  as : Boxing 
+
+
+If you convert from Reference Type to value Type, it is called as : UnBoxing
+
+
+System.Object 
+	it is the predefined class.
+	It is reference type
+	It is the base type for all the types in .NET 
+	It allows any kind of data. (Boxing occurs)
+
+
+
+System.Object 
+	System.ValueType 
+	System.String
+	System.Boolean
+	..
+	..
+
+Note: 
+	While assigning some data to the Object type, we don't need conversion.
+	As Object is the base type, we can store any data in object type directly.
+	But internally, Boxing will Occur.
+
+e.g.
+ object obj = 34;
+            Console.WriteLine(obj.GetType());
+
+            obj = "satya";
+            Console.WriteLine(obj.GetType());
+            obj = 34.34;
+            Console.WriteLine(obj.GetType());
+
+It does casting implicitly casting. (Boxing).
+The problem with object type is , we loose type safety.
+we loose compile time type checking.
+It reduces the performances  as it performs implicit type casting(boxing).
+
+To avoid this,we use Generics. (will discuss it later)
+
+
+UnBoxing :
+	It is a conversion from Reference Type to Value Type.
+
+Note :
+	To overcome this Boxing and Unboxing ,we use Generic type.
+	Using Generics ,we create User Defined Type(generic).
+	This Generic Type allows any kind of Data without any Boxing and UnBoxing problem.
+
+
+
+Note:
+	Value Type to Value Type, no issue.
+	Reference Type to Reference Type also no issue.
+	you must avoid using "object". Instead, use "Generic type".
+
+
+
+e.g.
+ object obj = 34; //boxing 
+            Console.WriteLine(obj.GetType());
+            int result = Convert.ToInt32(obj); //unboxing 
+
+            obj = "satya"; //boxing 
+            Console.WriteLine(obj.GetType());
+            string str = Convert.ToString(obj); //Unboxing 
+
+            obj = 34.34; //boxing 
+            Console.WriteLine(obj.GetType());
+            double dbl = Convert.ToDouble(obj); //Unboxing 
+
+
+
+
+

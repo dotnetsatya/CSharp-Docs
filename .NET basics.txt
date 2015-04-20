@@ -1,0 +1,996 @@
+.NET Contents :
+	Part- I
+
+	.NET Framework fundamentals.
+	C# Programming.
+	Object Oriented programing using C# ( class, interface, struct, enum ,delegate)
+	Windows Applications using C#.
+	Collections
+	LINQ (Language Integrated Query)
+	Serialization 
+	Reflection 
+	Generics
+	File Handling
+	SQL Server database(creating tables and working with SQL 			commands, T-SQL)	
+	ADO.NET (database connectivity).
+	LINQ to SQL 
+	Entity Framework (EF) 
+
+	
+	Part -II
+
+	Web Technlogies(HTML ,CSS,JavaScript)(Client Side)
+	ASP.NET  Web Forms programings(Server side) 
+	AJAX 
+	ASP.NET MVC Web Applications 
+	Linq, EF (Entity Framework)
+	Unit Testing using NUnit & Visual Studio Unit Testing tool.
+	XML, JSON, & jQuery 
+	Web Services
+	WCF Services 
+	RESTFul WCF Services	
+	ASP.NET Web API methods		
+	WPF 
+	Silverlight 	
+	SSRS
+
+Part III
+	UI Technologies
+	HTML 5, CSS3,JavaScript, JavaScript OOP 
+	
+	jQuery ,jQuery 
+	CSS 3 Media Queries 
+	CSS Bootstrap 
+	AJAX 
+	Client Side MVC framework (JavaScript frameworks)
+		AngularJs (Depth)
+		Backbone
+	NodeJS ( Server Side programing using JavaScript)
+
+	QUnit
+	Karma
+	Protractor 
+
+	Version Controls
+		TFS		
+		GIT
+
+
+
+	
+Note:
+	Will use C# as programing language for all the applications (Console Applications,  Class Library projects, Windows Forms applications, Web Applications, Web Services).
+
+
+=============================================================
+Today let us discuss the below topics:
+
+What is an Application? 
+
+What are the different applications we are developing? 
+
+What are the technologies we need to develop software applications? 
+
+What is .NET platform? 
+
+What is .NET Framework? 
+
+What are the Features of .NET Framework? 
+
+What are the main components of .NET Framework.
+
+What is Class Library in .NET framework?
+
+What is CLR in .NET Framework? 
+
+IL code 
+
+Assemblies 
+
+Metadata& Manifest
+
+Namespaces in .NET Framework
+
+CTS in .NET framework.
+
+CLS in .NET Framework.
+
+Visual Studio IDE
+
+.NET Runtime files for deployment.
+
+=============================================================
+
+We are the Software Developers 
+
+As a developer ,we can develop software applications. 
+
+Who will use these applications?
+
+We have business users for these software applications.(Customers/clients)
+
+We have various devices (desktops,laptops,smart phones and etc..)
+
+We have various networks (Intranet, Internet)
+
+we have various information systems (databases)
+
+
+we need to connect all the above. 
+
+We need to connect information, people and networks(devices)
+
+
+how to do this ?
+
+
+For this purpose, we need to develop some software applications.
+
+What kind of Applications? 
+
+It can be any of the following:
+
+	=> Standalone application 
+	=> Distributed Application 
+	=> Smart Device Application 
+
+
+What is Standalone Application ?
+	* It does not require Network.
+	* It is for Single user. 
+	* here, single machine & single user.
+	* It does not require any network.
+	* it is also called as Single User Application.	
+	* Only one user can operate at a time.
+
+	This can be : Console Application or Windows Application(.exe).
+
+	Console Application: CUI (Character User Interface)(Works in the command prompt).
+
+	Windows Application : GUI (Graphical User Interface) (works in Windows Environment)(includes some graphical features: form,textbox,button and etc...)
+
+As per the requirement, you can choose either Console or Windows.
+
+
+
+
+
+
+Distributed  Client/Server Application : (client/server Application)
+	* It is a multi user Application.
+	
+	* It works in the same network(LAN).
+
+	* Here, we host(deploy) the Server Application in the server machine. (It contains all the resources(database)).
+
+	* Here,we host the same client application in all the client machines.
+
+	* Now, these clients can communicate to the server by making a request(TCP,Http or some other protocol)
+
+	* All these clients can access the resources from the server application. 
+
+e.g.
+	Assume that,we have employee database(centralized server for all the employees data).
+	We have created one server application,which can return employee data, which can update employee data and etc...
+
+	This server Application is hosted in the server machine(centralized machine) in our Local network(LAN).
+
+
+	Now,we have a client application(Console/Windows) which can communicate to the server application and do some actions(get data,update and etc..).
+
+
+	All the users of the Local network must able to do the same.
+
+	For this purpose,we install the same client application in all the client machines in local network.
+
+This is how,we can distribute the data among multiple users.
+
+
+Note:
+In case of intranet client/server applications, the clients and the server must be in the same network(domain)(LAN).
+
+Host (Centralized machine)
+	Here, we deploy the server application.
+
+clients (here, we deploy the client application).
+
+channels(protocols)(Tcp,http,named pipes)
+
+Request/Response
+
+Client <=> Request/Response < => Server (host app)
+
+Server(host app) will respond as per request and return some data.
+
+e.g.
+Windows Services
+
+
+Note:
+	Here(client/Server), we can connect the information,people and networks within the organization(Local network).
+
+	Intead of Connecting within the orgaization,we need to connect with the people outside the network.(world wide)
+
+	For this purpose, we go for Web services (web Applications)
+
+e.g.
+	Distributed web Applications 
+	Web Services 
+	WCF Services 
+	Web API methods(RESTFul Services)
+	..
+	..
+
+These Applications are for World Wide Web.(internet)
+
+
+Note: 
+In case of client/server applications, we can distribute the data in the local network.
+
+In case of Intranet applications, we need to develop the server application and client application. And we must enable the communication between the client /server using channels (protocols).
+
+In case of Distributed Web applications, we can distribute the data to any user in the internet.
+
+Note:
+	In case of Web Applications,we need a Web server,web browser and web services(web methods,web pages)
+
+	In case of Web applications, we use the Web server as the server application and we use web browser as the client application.
+
+
+Note:
+In case of web applications , we don't need to develop any server /client applications. 
+
+We can use the builtin server applications and builtin client applications. 
+
+
+e.g.
+	IIS, Tomcat,apache (web servers)(server application)
+	chrome,safari,firefox,opera, IE (web browsers)(client application)
+
+Then ,what we need to do? 
+
+we need to develop web applications using some web technologies.
+
+Host that web applications(web page, web methods, web resources) in the web server.
+
+Then , you can configure the web application with some Unique address(URI).
+
+With the help of the URI(URL), the client can able to make request using http protocol using the browser.
+
+
+Web Servers (IIS) :
+	It is an host application. 
+	We can use any of the builtin web servers(IIS, tomcat,Apache)
+	It hosts the web Application(web method)
+	It can publish the web pages(methods) throughout the world.
+	It can accept the request from the web users and can return the requested data.
+
+
+Note:
+To host any web application,we must need some web server. 
+
+using any web technology,we can develop web applications.
+Using web server,we can host that web applications. 
+We can make that web application available to any user. 
+
+
+Web Browser(IE,Safari,Chrome and etc..)
+	It is the Web Client Application.
+	It is for sending the request to web server for a web pages(web methods)
+	To access any web page from web server, we need to make a http request to the server.
+	For this purpose, we use web browser.
+
+
+
+Web pages: 
+	These are HTML pages,which are used for publishing the information.
+	we can publish data, hyperlinks,images, audio,video and etc.. using web pages.
+
+	we can publish(distribute) hypertext using web pages.
+	It includes the UI with data.
+
+	
+
+Web methods:
+	These are some services(business logic methods),which are used for exposing the data to the bussines users throughout the world.
+	These are used to expose only raw data(collection of records in the XML or JSON format).
+
+	Once the web method is ready and hosted in the web server, the clients can consume these methods and can diplay results on the web pages.
+
+	Any one can consome(invoke) the web methods using their UI(web page) and can display the data on the web page.
+
+
+e.g.  For web services
+
+	Weather report web service
+	Any one can invoke this service and can display this data on the their web page.
+
+Note:
+	As a developer,we need to develop web pages/web methods and host in the web servers.
+
+	Once ,the web method/web page is hosted in the web server, they are available to end users. 
+
+	The end users can access these web methods/pages by sending the http request by using Web clients(Web Browsers)
+
+
+This is all about various Applications.
+	* Standalone Applications 
+		(Console/Windows)
+	* Distributed Applications 
+		(client/Server Applications)
+		(Distributed web applications)
+			web pages
+			web methods
+			web servers
+			web browsers 
+
+=============================================================
+
+How to develop these Applications? 
+
+To develop these applications, we need some software technologies.
+
+e.g.
+	Microsoft .NET 
+	Java 
+	PHP
+	..
+
+Now,let us try to understand how to develop these applications by using .NET platform.
+
+
+Now,will discuss : 
+
+What is .NET platform ? 
+What is .NET Framework?
+Why .NET Framework ? 
+How to develop Software Applications in .NET Framework
+The Components of .NET framework and etc...
+What is BCL/FCL in .NET Framework? 
+What is CLR in .NET Framework? 
+What is Metadata & Manifest? 
+What are Assembiles in .NET Framework ? 
+Private & Public Assemblies ? 
+JIT compiler 
+IL code 
+
+
+======================
+What is .NET platform ?(MS.NET)
+	It is a microsoft technology.
+	It is not a single technology.
+	It is a technology of technologies.
+	It unifies all the microsoft technologies.
+
+e.g.
+	It consists of various technologies:
+	- .NET Framework (development & execution environment)
+	
+	- Development tools(Visual Studio,TFS,SSMS,MSBI)
+	
+	- Servers(SQL Server, Exchange Server,Biztalk Server, Sharepoint Server, Microsoft Dynamics and etc..)
+	
+	- Services ( Web Services,WCF services)
+	
+	- Devices (can connect various devices: desktop,laptop,Tablets and smart phones)
+
+
+We have a single plaform(.NET) for different purpose.
+
+
+This all about .NET platform
+=============================================================
+What is .NET framework 
+Why .NET Framework 
+How to develop Software Applications using .NET Framework
+=============================================================
+
+What is Managed Code? 
+	The code(source code/business logic),which is in control of .NET runtime(CLR) is called as Managed Code.
+
+That is the reason,we call .NET Framework as Managed Code dvelopment environment.
+
+In case of Managed code, the managed objects(resources) are automatically destroyed by using CLR(Garbage Collector).
+
+
+
+What is UnManaged code ? 
+	This Unmanaged code is not in control of .NET Runtime(CLR).
+	
+	In case of UnManaged objects, we need to explicitly destroy the unmanged objects.
+
+	In .NET framework, we can consume unmanaged objects  using wrapper  classes(RCW,CCW)
+
+e.g.(for unmanged code)
+	Visual Basic ActiveX controls
+	COM Components.
+
+	
+
+ Note:
+	Assembly is a library file in .NET framework.
+
+	It is a .dll file(dynamic Link library).
+
+	It includes set of logical units(classes)
+
+Note:
+	.NET is a Single technology, can many Applications 
+	Console Applications 
+	Winodws Applications 
+	client/server applications 
+	web applications 
+	web services 
+	smart device Applications 
+
+
+We use .NET framework Base Classes ,CLR and we can utilize any .NET compatible language to develop & execute new applications 
+
+
+============================================================
+How to develop applications using .NET framework 
+
+e.g.
+	Console Application 
+	Windows Forms Application 
+	Client/Server Application 
+	Web Application 
+	Web Service
+	Smart Device Application 
+
+For Any Application: 
+	User Interface (UI)
+	Bussiness Logic( Source Code : BL)
+	Data Access Logic (DAL) 
+
+We are getting the base classes(BCL) and languages compilers, runtime engine (CLR) from .NET framework.
+
+How to write all these things in .NET framework ? 
+
+For this purpose,we have different elements in .NET framework.
+
+User Interface : 
+	Console (CUI)
+	Windows Forms (GUI) 
+	Web Form(web page: HTML & CSS,asp.net)
+	Mobile Form(Smart Device)
+
+You can choose any UI for your Application.
+
+
+How to write bussiness logic(source code) in .NET framework? 
+
+
+For this purpose,.NET framework provides various programing languages.
+
+e.g.
+	C#.NET
+	VB.NET
+	VC++.NET
+	F#.NET
+	PERL.NET
+	Python.NET 
+	..
+	..
+
+.NET framework supports 70+ languages.
+we got language comp?ilers for each language.
+It provides a common runtime for all these languages(CLR)
+
+You can write the bussiness logic for your application by using any of the .net compatible programing language.
+
+You can compile the source code using the respective language compiler.
+
+you can execute(run) the application using .NET runtime(CLR).
+
+Note:
+The syntaxes are different in each language.
+
+
+============
+How to access the data from database? 
+How to write data access logic? 
+How to establish connection to the database? 
+
+For this purpose, .NET framework includes various data access technologies : 
+
+ADO.NET
+LINQ to SQL 
+ADO.NET Entity Framework 
+
+
+Note:
+	The syntaxes for any logic(source code) can be of your favorite programing language(C#.NET,VB.NET or any .net compatible programing language).
+
+
+e.g.
+	In C# : 
+		public class Customer 
+		{
+		}
+
+	In VB : 
+		public class Customer 
+			
+		End class
+
+For UI : 
+	CUI/GUI/WebForm /Mobile Form
+For Busines Logic : 
+	Any .net compatible programing language.
+For Data Access Logic : 
+	ADO.NET/ADO.NET EF /LINQ 
+
+On Top of this,we use .NET base classes(BCL) & CLR for execution.
+
+======================================================
+How to develop Web Applications/web methods/web services in .NET Framework ? 
+
+We have static web applications , dynamic web applications 
+
+	For static web Application, we use HTML, JavaScript/JQuery, CSS (It does not include any database).
+
+	
+	For Dynamic web applications(Data Driven),we need some server side web technology.
+
+ASP.NET Web Forms/ASP.NET MVC Web Applications 
+ASP.NET Web Services
+ASP.NET Web API (web methods)(RESTFul services).
+
+
+
+Summary : 
+UI : Console, Windows Forms,Web Forms, Mobile forms 
+
+Business Logic : Any .NET compatible programing languages(C#.NET,VB.NET and etc...)
+
+DAL : ADO.NET,LINQ to SQL ,ADO.NET Entity Framework(EF)
+
+Distributed Computing : WCF (Remoting, Web services, COM + and MSMQ)
+
+Web Application Development: ASP.NET web forms, ASP.NET Web Services, ASP.NET Web API, ASP.NET MVC 
+
+
+
+On top of this: 
+	BCL : Base Class library 
+	CLR : Common language Runtime.
+
+=============================================================
+What are the main features of .NET framework?
+
+
+.NET framework is platform independent? 
+
+How? 
+
+.NET application can execute in different platforms 
+
+How?
+
+=> Source Code (.cs /.vb)
+
+=> compilation of Source Code(Language compiler Or Visual Studio Compiler)
+
+=> MSIL (Intermediate Language: Assembly kind of language)
+
+=> CLR => JIT(Just In Time compiler )
+
+=> Machine Code( Native Code) 
+
+Note:
+	You can observe here.
+	We are not getting machine code directly.
+	When we compile the source code at first time, we get MSIL code.
+	MSIL code is not the machine code. 
+	It is a set of portable assembly instrucations.
+	
+	now, you can execute this MSIL code in any platform. 
+
+	While executing ,we use CLR JIT compiler to interpret MSIL to machine code(native code).
+
+
+Because of MSIL code, .NET framework application is Platform independent.
+
+MSIL code is called as Managed Code.
+
+============================================================
+ASP.NET Web Pages
+
+ASP.NET Web Services 
+
+What is the difference? 
+
+In case of Web Pages,we can publish/display information
+e.g.
+	images
+	hyperlinks
+	audio 
+	video 
+	text 
+	and etc...
+
+
+In case of Web services,we can publish only web methods(business logic methods).
+
+We can publish only raw data in the form of XML or JSON 
+
+
+============================================================
+What is Globalized Web Application ?
+	It includes multiple Cultures.
+	We can present the content on the UI in different languages
+		e.g.
+		English 
+		french 
+		Telugu 
+		Hindi 
+		...
+		...
+As per location, the current culture will be set automatically. 
+As per localization, web page will display the content as per the current culture.
+
+=============================================================
+What is interoperability ?
+
+Assume that ,we have developed many components before .NET framework.
+
+e.g.
+	COM components
+	VB components
+	Activex controls 
+	and etc...
+
+we need to use(consume) these components in .NET framework.
+
+It is possible in .NET framework.(this is called interoperability)
+
+We can consume COM components(UnManged code) in .NET framework.
+
+We can also expose .NET managed code to the COM components.
+
+For this purpose,we use some Wrapper classes(proxy).
+
+CCW : COM Callable Wrapper 
+
+Using CCW ,we can call .NET components in COM.
+
+RCW : Runtime Callable Wrapper 
+Using RCW ,we can call COM components in .NET application.
+=============================================================
+
+Till now we have studied:
+
+What is .NET Platform ? 
+What is .NET Framework ? 
+Why .NET Framework ?
+How to develop Applications using .NET Framework ? 
+The features of .NET Framework ?
+=============================================================
+Now,will discuss the components of .NET framework ?
+
+In .NET framework ,you can develop any application.
+
+But for any Application, we need some base classes(builtin classes) and we need runtime.
+
+For this purpose, .NET framework includes two components
+
+*  BCL or FCL 
+*  CLR 
+
+
+BCL : Base class Library 
+FCL : framework class library 
+
+	BCL : 
+		It contains set of builtin library files.
+		It contains set of .dll files 
+
+
+Note:
+	In .Net framework,we call the library files as Assemblies.
+
+
+Source Code (.cs /.vb )
+
+Compiler it (language compiler) 
+
+.exe/.dll (Assembly)
+	Assembly : IL (MSIL OR CIL)
+	Assembly contains : IL, Metadata , Manifest.
+
+
+
+.exe : Executable 
+
+.dll : Re-Usable 
+
+DLL : dynamic Link library 
+
+
+Assembly(.dll/.exe) : physical file 
+	Namespaces (Logical units)
+		Types(class,interface,struct,enum,delegate)
+			Methods(members)
+
+e.g.
+mscorlib.dll (builtin assembly)
+	System (Namespace) 
+		Console  (Class)
+			Read() (methods)
+			Write()
+			ReadLine()
+			WriteLine()
+			...
+
+
+Note:
+BCL includes many builtin Assemblies 
+
+e.g.
+mscorlib.dll
+System.dll
+System.Data.dll
+System.Xml.dll
+System.Web.dll
+System.Windows.Forms.dll
+System.Drawing.dll
+System.Web.Mvc.dll
+System.Runtime.Remoting.dll
+System.ServiceProcess.dll
+..
+..
+
+
+You can see all the assemblies using Visual Studio 
+Open Visual Studio IDE
+Open Object Browser .
+
+With the help of these assemblies,we can develop new applications(.exe/.dll)
+
+e.g.
+Console application(.exe)
+Windows Forms (.exe)
+class library(.dll)
+
+
+e.g.
+For Console Appliations :
+	mscorlib.dll 
+	It is required for all the .net applications. 
+	It includes fundamental types which are required for all the .net applications.
+
+
+For Windows Applications:
+	System.Windows.Forms.dll
+	System.Drawing.dll
+
+For Asp.Net Web Applications:
+	System.Web.dll
+
+For database Connectivity : 
+	System.Data.dll
+
+For XML Access : 	
+	System.Xml.dll
+
+For LINQ : 
+	System.Core.dll
+	System.Data.Linq.dll
+
+For WCF : 
+	System.ServiceProcess.dll
+For EF :
+	Entityframework.dll
+...
+...
+=============================================================
+Types of Assemblies:
+
+In case of Structure Level: 
+
+Single File Assembly :
+	here, single source file and single .dll file.
+
+
+Multi-File Assembly:
+	Multiple Source files and Single .dll file 
+
+
+
+
+In case of Access Level:
+
+private Assembly 
+
+public Assembly/Shared Assemblies 
+
+
+
+private assembly: 
+	Once private assembly is created(.dll) ,we can access in only application.
+
+	To access the same private assembly in another application,we need to create one more copy of the same assembly.(Add the reference).
+
+	That means,multiple copies of the same assembly(private) exists in a single machine.
+
+
+
+public assembly:(Shared Assembly)
+
+	It can be shared among multiple applications.
+	
+	That means, only one copy of a public assembly exists in a single machine.
+
+
+Note:
+All the builtin Assemblies are public assemblies(Shared assemblies)
+BCL contains the shared assemblies. 
+
+In case of Shared assembly, we don't need to copy the .dll file in each target application.(just add the reference).
+
+We can just deploy the Shared Assembly into a global directory(GAC).
+We can use Global Assembly Cache for Shared Assemblies. 
+From This GAC, the same copy of an assembly can be shared among multiple applications.
+
+
+
+In case of private assembly , to reuse the same assembly in multiple applications ,we need to copy that .dll into all the applications. 
+
+ In case of Shared assembly, we don't need to copy that .dll into all the applications. we can directly add the reference from GAC.
+
+
+Note:
+In the later sections,we will discuss how to create user defined assemblies.
+
+
+Note:
+An assembly be either .exe or .dll file.
+
+In case of library file,we don't need entry point(Main())
+
+In case of .exe file, we need an entry point(Main()) 
+
+If you try to compile the application without main Method, will get 
+error as it requires Main() method for executable file.
+
+If you create class library(.dll), we don't need Main() method.
+
+
+
+Note: 
+You can see all the Builtin Assemblies in .NET framework.
+
+Open Visual Studio 
+Open View Menu 
+Open Object Browser
+
+This is all about BCL/FCL 
+=============================================================
+
+Now, will discuss about CLR
+
+Common Language Runtime 
+ 
+In .NET framework we have many languages.
+
+e.g.
+C#.NET,VB.NET,VJ#.NET,F#.NET,VC++.NET and et...
+
+For each language,we have language compiler 
+
+C#  :CSC (CSharp compiler )
+VB : VBC (Visual Basic Compiler) 
+..
+..
+..
+
+
+Once the Source code is compiled,we get a common code for any source language.
+
+That is called as : MSIL (IL or CIL)
+
+This also called as managed code.
+
+Now, to execute this managed code(IL),we need another compiler(interpreter).
+
+For this purpose, .NET includes a common runtime called : CLR 
+
+CLR includes various components to handle runtime activities.
+e.g.
+Type checker
+Security Mananger
+Garbage Collector 
+JIT Compiler 
+Class Loader
+and etc..
+=============================================================
+
+
+
+
+
+Assembly :
+	IL 
+	Metadata
+	Manifest
+	Resources (resx files) 
+
+
+IL OR CIL OR MSIL 
+	It is a kind of assembly code.
+	It contains set of assembly instruction.
+	It forms the basis of platform independency.
+	It is portable. 
+
+We can use DisAssembler to view the IL code for given assembly.
+ILDASM 
+
+
+
+What is the difference between Manifest and Metdata? 
+
+Manifest : 
+	It contains all the Assembly Information.
+		--Assembly Name
+		--Assembly version 
+		--Assembly Security identity
+		--Assembly MetaData(it describes how the elements relate to each other)
+
+
+
+Assembly Metadata : 
+	It contains information of about types.
+	What types are there in the assembly(class names)
+	What are the methods of the assembly 
+	What is the signature of each method(syntax : what return type and what argument types)
+	
+	
+
+Note:
+Manifest contains Assembly information. 
+
+Metadata contains type information.
+
+
+============================================================
+Mananged Code 
+	This is in control of CLR.
+	This is handled by Garbage collector.
+	GC will automatically destroy the managed objects 
+
+
+UnManaged code 
+	This is not in control of CLR.
+	The GC will not destroy the unmanaged objects.
+	We need to explicitly dispose these unmanaged objects.
+e.g.
+	COM components
+		VB components 
+		ActiveX controls 
+		MFC classes 
+
+
+To integrate Managed and Unmanaged code, we use Wrappers.
+	CCW(COM Callable Wrapper)
+	RCW  (Runtime Callable Wrapper).
+
+using CCW, we can call .NET components in COM.
+
+Using RCW, we can call COM Components in .NET 
+=============================================================
+
+Note: 
+You can view type information(metadata) by using ILDASM utility command.
+
+
+
+
+
+Note:
+CLR 
+	CTS (common types)
+	CLS ( common base rules) 
+
+This is all about .NET framework basics and applications using C#
+
