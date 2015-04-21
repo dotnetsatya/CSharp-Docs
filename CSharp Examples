@@ -1,0 +1,537 @@
+Creating C# program 
+compilation of C# program 
+creating executable 
+creating libraries(.dll)
+adding the reference 
+creating Projects in Visual Studio 
+
+
+Visual Studio :
+	IDE for .NET 
+	Creating .NET Projects 
+	Creating SQL Server Reports  (MSBI)
+	Integrate the .NET projects with Verson controls (VSS, TFS, GitHub)
+	It comes with .NET framework and CLR 
+
+Visual Studio : 2013 
+=======================================================================================
+OOP 
+	Class
+	
+Assembly 
+	Namespace
+		Types (Class, Interface, struct, delegate , enum)
+			Fields /methods 
+
+
+
+class in C# :
+
+static class & non-static 
+
+
+static class : 
+	Includes only static members
+	No inheritance 
+	No instance 
+
+non-static class :
+	can include any data(static or non-static)
+	Can Inherit 
+	Can allow to create instance 
+
+
+
+
+
+
+What is field in a class? 
+	It is a private data in the class.
+	This can be static or non-static 
+
+
+
+What is the difference between static field and nonn-static field ?
+
+	For static field there is only a single instance for multiple objects.
+	For the first time ,static field will get initialized by the static contructor and the same is used for across the objects.
+	It can preserve it's state acrosss objects.
+
+
+
+
+	For non-static field ,there is a different scope for each object. 
+	FOR EACH OBJECT, there is a different instance non-static field.
+
+
+example:
+using System;
+using System.Collections.Generic;
+
+namespace CSharpBasics
+{
+    public static class MyCalculator 
+    {
+        private static int data;
+
+
+        public static void Reset()
+        {
+            data = 0;
+        }
+        public static void Add(int num){
+            data += num;
+        }
+
+        public static void Substract(int num)
+        {
+            data -= num;
+        }
+
+        public static void Multiply(int num)
+        {
+            data *= num;
+        }
+
+        public static int GetResult()
+        {
+            return data;
+        }
+
+    }
+
+    public class Sample
+    {
+        private static int counter;
+
+        public Sample()
+        {
+            counter++;
+        }
+
+        public static int GetCounter()
+        {
+            return counter;
+        }
+    }
+
+
+    public class Class1
+    {
+        public void Foo()
+        {
+            new Sample();
+            new Sample();
+            new Sample();
+        }
+        public int GetCounter()
+        {
+            return Sample.GetCounter();
+        }
+    }
+
+   
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Class1 obj = new Class1();
+            obj.Foo();
+
+            Console.WriteLine(obj.GetCounter());
+
+
+
+            MyCalculator.Add(10);
+            MyCalculator.Add(43);
+            MyCalculator.Add(54);
+            Console.WriteLine(MyCalculator.GetResult());
+
+            MyCalculator.Reset();
+            MyCalculator.Add(4);
+            MyCalculator.Multiply(5);
+            Console.WriteLine(MyCalculator.GetResult());
+
+
+
+
+
+         
+        }
+    }
+}
+
+=====================================================
+Read()
+	Int32
+ReadLine()
+	String 
+
+
+e.g.
+	int ch=Console.Read();  //It returns ASCII of given char 
+
+	To get char back, use ToChar() method.
+e.g.
+	char inputchar=Convert.ToChar(ch);
+
+
+Example : checked/unchecked
+using System;
+namespace DemoApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+            try
+            {
+                checked
+                {
+
+                    long largeValue = 3344339999999443;
+                    int shortValue = (int)largeValue;
+
+                    Console.WriteLine(shortValue);
+                }
+              
+            }
+            catch (ArithmeticException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.ReadLine();
+        }
+    }
+}
+
+
+Example : for conversion
+using System;
+namespace DemoApp
+{
+    public class Employee
+    {
+        public int EmployeeId { get; set; }
+        public object bonus { get; set; }
+    }
+
+
+    public class Program
+    {
+        public static void Main()
+        {
+
+            Employee obj = new Employee();
+
+
+            Console.WriteLine(obj.GetType());
+            Console.WriteLine(obj.EmployeeId.ToString());
+            //Console.WriteLine(obj.bonus.ToString());
+            Console.WriteLine(Convert.ToString(obj.bonus));
+
+        }
+    }
+}
+
+
+Exammple : for boxing & Unboxing
+using System;
+namespace DemoApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+
+            int value = 33888;
+
+            object obj = value;  //boxing 
+
+            byte result =Convert.ToByte(obj); //Unboxing 
+
+            Console.WriteLine(result);
+
+
+        }
+    }
+}
+
+
+Example : foreach()
+using System;
+namespace DemoApp
+{
+    public class Program
+    {
+        public static void Main()
+        {
+
+            int[] arr = {43,34,34,345,345,3};
+            
+            string[] names = { "Satya", "John", "James", "Lee" };
+
+            foreach (int item in arr)
+            {
+                Console.WriteLine(item);
+            }
+
+
+            foreach (string name in names)
+            {
+                Console.WriteLine("The length of :{0} is :{1}", name, name.Length);
+            }
+
+        }
+    }
+}
+
+
+Example: on var 
+using System;
+namespace DemoApp
+{
+    public class Class1
+    {
+        public int GetValue()
+        {
+            return 4334;
+        }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+            Class1 obj = new Class1();
+            var result=obj.GetValue();
+            Console.WriteLine(result.ToString());
+
+        }
+    }
+}
+
+
+Example : for ref/out
+
+using System;
+namespace DemoApp
+{
+
+    public class Expressions
+    {
+        public void Addition( int arg1,  int arg2,out int result)
+        {
+            result = arg1 + arg2;  
+        }
+    }
+
+    public class Program
+    {
+        public static void Main()
+        {
+
+            Expressions exp = new Expressions();
+            int value1 = 34;
+            int value2 = 45;
+            int result;
+            exp.Addition(value1,value2,out result);
+            Console.WriteLine(value1);
+            Console.WriteLine(value2);
+            Console.WriteLine(result);
+
+
+
+
+        }
+        
+    }
+}
+
+==========================
+using System;
+namespace DemoApp
+{
+
+    public class Expressions
+    {
+        public string JoinElements(int value, params int[] arr)
+        {
+            string set = "";
+            foreach (var item in arr)
+            {
+                set += item + ",";
+            }
+
+            if (arr.Length > 0)
+            {
+                set = set.Substring(0, set.Length - 1);
+            }
+            return set;
+        }
+
+
+    }
+    public class Program
+    {
+        public static void Main()
+        {
+            Expressions exp = new Expressions();
+            int[] list = { 34, 43, 4, 3, 23, 23, 423, 34 };
+            Console.WriteLine(exp.JoinElements(4,list));
+            Console.WriteLine(exp.JoinElements(5,new int[]{6,2,2,23,43,45,6}));
+            Console.WriteLine(exp.JoinElements(34, 45, 45, 54, 45, 45, 4));
+            Console.WriteLine(exp.JoinElements(3));
+
+
+
+        }
+        
+    }
+}
+==============================
+Example : for optional and named parameters
+
+using System;
+namespace DempApp
+{
+    public class Employee
+    {
+        private int _employeeId;
+        private string _employeeName;
+        private string _job;
+        private bool _isSalaried;
+        private decimal _salary;
+
+
+        public void SetEmployee(int employeeId=1,string employeeName="Satya",string job="Manager",bool isSalaried=false,decimal salary=1000)
+        {
+            _employeeId = employeeId;
+            _employeeName = employeeName;
+            _job = job;
+            _isSalaried = isSalaried;
+            _salary = salary;
+        }
+
+        public string getEmployee()
+        {
+            return string.Format("Id:{0} Name:{1} Job:{2} Salary:{3} Is Salaried:{4}", _employeeId, _employeeName, _job, _salary, _isSalaried);
+        }
+    }
+    public class Program
+    {
+        public static void Main()
+        {
+            Employee emp = new Employee();
+            emp.SetEmployee();
+            Console.WriteLine(emp.getEmployee());
+
+
+            emp.SetEmployee(employeeName:"John",isSalaried:true);
+            Console.WriteLine(emp.getEmployee());
+
+
+        }
+    }
+
+
+}
+=====================================
+Example : for ?? and ?
+
+using System;
+namespace DempApp
+{
+    public class Class1
+    {
+        public int? Addition(int? arg1, int? arg2)
+        {
+            arg1=arg1 ?? 0;
+            arg2 = arg2 ?? 0;
+            return arg1 + arg2;
+        }
+    }
+    public class Program
+    {
+        public static void Main()
+        {
+            Class1 obj = new Class1();
+            Console.WriteLine(obj.Addition(3, 4));
+            Console.WriteLine(obj.Addition(43, null));
+            Console.WriteLine(obj.Addition(null, 34));
+            Console.WriteLine(obj.Addition(null, null));
+
+
+
+        }
+    }
+
+
+}
+
+============================
+Example : for enum
+using System;
+namespace DempApp
+{
+    public enum Account
+    {
+        Savings,
+        Fixed,
+        Current,
+        Checking,
+        Others
+    }
+    public class Customer
+    {
+        public int CustomerId { get; set; }
+        public string CustomerName { get; set; }
+        public decimal AccountBalance{get;set;}
+        public Account AccountType{get;set;}
+    }
+    public class Program
+    {
+        public static void Main()
+        {
+            Customer cust = new Customer();
+            cust.CustomerId = 12345;
+            cust.CustomerName = "Satya";
+            cust.AccountBalance = 44334;
+
+            int accountType = 354;
+            switch (accountType)
+            {
+                case (int)Account.Savings:
+                    cust.AccountType = Account.Savings;
+                    break;
+                case (int)Account.Current:
+                    cust.AccountType = Account.Current;
+                    break;
+                case (int)Account.Fixed:
+                    cust.AccountType = Account.Fixed;
+                    break;
+
+                case (int)Account.Checking:
+                    cust.AccountType = Account.Checking;
+                    break;
+                default:
+                    cust.AccountType = Account.Others;
+                    break;
+            }
+
+
+
+            Console.WriteLine("The customer info:");
+            Console.WriteLine("Id:{0} Name:{1} Balance : {2} Account Type:{3}", cust.CustomerId, cust.CustomerName, cust.AccountBalance, cust.AccountType);
+
+            Console.WriteLine("The value of Account Type:{0}", (int)cust.AccountType);
+        }
+    }
+
+
+}
+
+
+
+
